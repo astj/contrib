@@ -70,9 +70,10 @@ func WithNodeType(f func(context.Context, uuid.UUID) (string, error)) NodeOption
 }
 
 // WithFixedNodeType sets the Type of the node to a fixed value.
-func WithFixedNodeType(t string) NodeOption {
+// The value should be a table name in the database.
+func WithFixedNodeType(tableName string) NodeOption {
 	return WithNodeType(func(context.Context, uuid.UUID) (string, error) {
-		return t, nil
+		return tableName, nil
 	})
 }
 
